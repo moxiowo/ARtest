@@ -3,18 +3,22 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        flatDir {
+            dirs("libs") // ⬅️ 放你自己的 AAR
+        }
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
-        maven("https://dl.google.com/dl/android/maven2/")
-
+        flatDir {
+            dirs("libs") // ⬅️ 放你自己的 AAR
+        }
     }
 }
 
-rootProject.name = "ARCore"
+rootProject.name = "專題AR"
 include(":app")

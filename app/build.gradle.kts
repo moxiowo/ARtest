@@ -47,16 +47,19 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("libs/jni")
+        }
+    }
 }
 
 dependencies {
     implementation("com.google.ar:core:1.43.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("com.google.android.filament:filament-android:1.34.0")
-    implementation("com.google.android.filament:gltfio-android:1.34.0")
-    implementation(files("libs/gltfio-android.aar"))
-    implementation(files("libs/filament-android.aar"))
+    implementation(files("libs/gltfio-v1.34.0-android.aar"))
+    implementation(files("libs/filament-v1.34.0-android.aar"))
 
 
     implementation(libs.androidx.core.ktx)

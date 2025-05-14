@@ -21,6 +21,7 @@ import javax.microedition.khronos.opengles.GL10
 import com.google.android.filament.SwapChain
 
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var surfaceView: GLSurfaceView
@@ -58,10 +59,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         try {
             if (arSession == null) {
-                if (!ArCoreApk.getInstance().checkAvailability(this).isSupported) {
-                    Toast.makeText(this, "本裝置不支援 ARCore", Toast.LENGTH_LONG).show()
-                    return
-                }
                 arSession = Session(this)
                 val config = Config(arSession)
                 config.planeFindingMode = Config.PlaneFindingMode.HORIZONTAL
@@ -69,8 +66,9 @@ class MainActivity : AppCompatActivity() {
             }
             arSession?.resume()
         } catch (e: UnavailableException) {
-            Toast.makeText(this, "AR 啟動失敗: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "ARCore 初始化失敗：${e.message}", Toast.LENGTH_LONG).show()
         }
+
         surfaceView.onResume()
     }
 
